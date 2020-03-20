@@ -15,13 +15,20 @@
 </head>
 
 <body>
-
-	<div style="width:75%;">
-		<canvas id="canvas"></canvas>
+	<h1>Casos CoVID-19 en Chile</h1>
+	<div style="width:75%">
+		<canvas id="linear"></canvas>
 	</div>
 	<br>
 	<br>
-	<h1>Casos CoVID-19 en Chile</h1>
+	<div style="width:75%">
+		<canvas id="logaritmico"></canvas>
+	</div>
+
+	<p>Autor: Sebasthian Ogalde Castro<br>
+	Instagram: <a href=https://www.instagram.com/astro_ogalde/>@astro_ogalde</a>
+	</p>
+	
 	<!--<button id="randomizeData">Randomize Data</button>
 	<button id="addDataset">Add Dataset</button>
 	<button id="removeDataset">Remove Dataset</button>
@@ -30,7 +37,66 @@
 	<script>
 		var days = ['3/03/2020', '4/03/2020', '5/03/2020', '6/03/2020', '7/03/2020', '8/03/2020', '9/03/2020', '10/03/2020', '11/03/2020', '12/03/2020', '13/03/2020', '14/03/2020', '15/03/2020', '16/03/2020', '17/03/2020', '18/03/2020', '19/03/2020', '20/03/2020'];
 		//, '21/03/2020', '22/03/2020', '23/03/2020', '24/03/2020', '25/03/2020', '26/03/2020', '27/03/2020'];
-		var config = {
+		var configLinear = {
+			type: 'line',
+			data: {
+				labels: ['3/03/2020', '4/03/2020', '5/03/2020', '6/03/2020', '7/03/2020', '8/03/2020', '9/03/2020', '10/03/2020', '11/03/2020', '12/03/2020', '13/03/2020', '14/03/2020', '15/03/2020', '16/03/2020', '17/03/2020', '18/03/2020', '19/03/2020', '20/03/2020'],
+				//'21/03/2020', '22/03/2020', '23/03/2020', '24/03/2020', '25/03/2020', '26/03/2020', '27/03/2020'],
+				datasets: [{
+					label: 'Casos confirmados',
+					backgroundColor: window.chartColors.blue,
+					borderColor: window.chartColors.blue,
+					data: [ '1', '3', '4', '5', '7', '10', '13', '17', '23', '33', '43', '61', '75', '156', '201', '238', '342', '434'],
+					fill: false,
+				}, {
+					label: 'Muertes',
+					fill: false,
+					backgroundColor: window.chartColors.red,
+					borderColor: window.chartColors.red,
+					data: [ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0','0','0','0'],
+				},
+				{
+					label: 'Recuperados',
+					fill: false,
+					backgroundColor: window.chartColors.green,
+					borderColor: window.chartColors.green,
+					data: [ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0','0','0','0'],
+				}]
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'CoVID-19 en Chile'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Mes'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Casos confirmados'
+						}
+					}]
+				}
+			}
+		};
+
+		var configLog = {
 			type: 'line',
 			data: {
 				labels: ['3/03/2020', '4/03/2020', '5/03/2020', '6/03/2020', '7/03/2020', '8/03/2020', '9/03/2020', '10/03/2020', '11/03/2020', '12/03/2020', '13/03/2020', '14/03/2020', '15/03/2020', '16/03/2020', '17/03/2020', '18/03/2020', '19/03/2020', '20/03/2020'],
@@ -90,68 +156,17 @@
 		};
 
 		window.onload = function() {
-			var ctx = document.getElementById('canvas').getContext('2d');
-			window.myLine = new Chart(ctx, config);
+			var ctxlinear = document.getElementById('linear').getContext('2d');
+			window.myLinear = new Chart(ctxlinear, configLinear);
+
+			var ctxlog = document.getElementById('logaritmico').getContext('2d');
+			window.myLog = new Chart(ctxlog, config);
 		};
 
-		document.getElementById('randomizeData').addEventListener('click', function() {
-			config.data.datasets.forEach(function(dataset) {
-				dataset.data = dataset.data.map(function() {
-					return randomScalingFactor();
-				});
-
-			});
-
-			window.myLine.update();
-		});
-
 		var colorNames = Object.keys(window.chartColors);
-		document.getElementById('addDataset').addEventListener('click', function() {
-			var colorName = colorNames[config.data.datasets.length % colorNames.length];
-			var newColor = window.chartColors[colorName];
-			var newDataset = {
-				label: 'Dataset ' + config.data.datasets.length,
-				backgroundColor: newColor,
-				borderColor: newColor,
-				data: [],
-				fill: false
-			};
 
-			for (var index = 0; index < config.data.labels.length; ++index) {
-				newDataset.data.push(randomScalingFactor());
-			}
+		
 
-			config.data.datasets.push(newDataset);
-			window.myLine.update();
-		});
-
-		document.getElementById('addData').addEventListener('click', function() {
-			if (config.data.datasets.length > 0) {
-				var month = MONTHS[config.data.labels.length % MONTHS.length];
-				config.data.labels.push(month);
-
-				config.data.datasets.forEach(function(dataset) {
-					dataset.data.push(randomScalingFactor());
-				});
-
-				window.myLine.update();
-			}
-		});
-
-		document.getElementById('removeDataset').addEventListener('click', function() {
-			config.data.datasets.splice(0, 1);
-			window.myLine.update();
-		});
-
-		document.getElementById('removeData').addEventListener('click', function() {
-			config.data.labels.splice(-1, 1); // remove the label first
-
-			config.data.datasets.forEach(function(dataset) {
-				dataset.data.pop();
-			});
-
-			window.myLine.update();
-		});
 	</script>
 </body>
 
