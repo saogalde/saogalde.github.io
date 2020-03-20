@@ -17,7 +17,18 @@
 
 <body>
 	<h1>Casos CoVID-19 en Chile</h1>
-	<p>Dado que los reportes del Minsal sólo son números y no dan a entender cómo se está expandiendo el virus, he creado esta pequeña página que resume lo reportado por el Ministerio en un gráfico diario con <strong>Casos confirmados</strong>, número de <strong>Muertes</strong> y cantidad de <strong>Recuperados</strong>. Según el Ministerio, los casos de un día dado corresponden a los del día anterior hasta las 9pm (por ejemplo: si el día 13/03/20 hay 43 casos, corresponden a los casos detectados hasta el día 12/03/20 a las 9pm).
+	<p>Dado que los reportes del Minsal sólo son números y no dan a entender cómo se está expandiendo el virus, he creado esta pequeña página que resume lo reportado por el Ministerio en un gráfico diario con <strong>Casos confirmados</strong>, número de <strong>Muertes</strong> y cantidad de <strong>Recuperados</strong>. Según el Ministerio, los casos de un día dado corresponden a los del día anterior hasta las 9pm (por ejemplo: si el día 13/03/20 hay 43 casos, corresponden a los casos detectados hasta el día 12/03/20 a las 9pm).</p>
+	
+	<p>Datos Actuales:<br>
+	Total Casos Detectados: 434<br>	
+	Total Muertes: 0<br>
+	Total Recuperados: 0<br>
+	</p>
+	
+	<p>Proyección Casos Detectados dentro de 5 días: 2493.<br>
+	La proyección se basa en los datos actuales ajustando una curva exponencial.</p>
+
+
 	<div style="width:75%">
 		<canvas id="linear"></canvas>
 	</div>
@@ -57,7 +68,7 @@
 			return [Math.exp(a),b];
 		}
 		// HERE ALL THE DATA
-		var days = ['3/03/2020', '4/03/2020', '5/03/2020', '6/03/2020', '7/03/2020', '8/03/2020', '9/03/2020', '10/03/2020', '11/03/2020', '12/03/2020', '13/03/2020', '14/03/2020', '15/03/2020', '16/03/2020', '17/03/2020', '18/03/2020', '19/03/2020', '20/03/2020','21/03/2020', '22/03/2020', '23/03/2020', '24/03/2020', '25/03/2020'];
+		var days = ['3/03/2020', '4/03/2020', '5/03/2020', '6/03/2020', '7/03/2020', '8/03/2020', '9/03/2020', '10/03/2020', '11/03/2020', '12/03/2020', '13/03/2020', '14/03/2020', '15/03/2020', '16/03/2020', '17/03/2020', '18/03/2020', '19/03/2020', '20/03/2020','21/03/2020', '22/03/2020', '23/03/2020'];
 
 		var casosConfirmadosLinear = [ '1', '3', '4', '5', '7', '10', '13', '17', '23', '33', '43', '61', '75', '156', '201', '238', '342', '434'];
 		var muertesLinear = [ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0','0','0','0'];
@@ -65,9 +76,10 @@
 
 		var proyeccionExponencial = expCurveFit(casosConfirmadosLinear);
 		var casosConfirmadosProyeccion = [];
-		for(var i=0; i<(casosConfirmadosLinear.length+5); i++){
+		for(var i=0; i<(casosConfirmadosLinear.length+3); i++){
 			casosConfirmadosProyeccion.push(Math.round(proyeccionExponencial[0]*Math.exp(proyeccionExponencial[1]*i)));
 		}
+		console.log(casosConfirmadosProyeccion);
 
 		//, '21/03/2020', '22/03/2020', '23/03/2020', '24/03/2020', '25/03/2020', '26/03/2020', '27/03/2020'];
 		var configLinear = {
@@ -98,8 +110,9 @@
 				{
 					label: 'Proyeccion',
 					fill: false,
-					backgroundColor: window.chartColors.gray,
-					borderColor: window.chartColors.gray,
+					backgroundColor: window.chartColors.orange,
+					borderColor: window.chartColors.orange,
+					borderDash: [5, 5],
 					data: casosConfirmadosProyeccion,
 				}]
 			},
