@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Line Chart</title>
+	<title>Casos CoVID-19 en Chile</title>
 	<script src="lib/Chart.min.js"></script>
 	<script src="lib/utils.js"></script>
 	<style>
@@ -15,16 +15,18 @@
 </head>
 
 <body>
+
 	<div style="width:75%;">
 		<canvas id="canvas"></canvas>
 	</div>
 	<br>
 	<br>
-	<button id="randomizeData">Randomize Data</button>
+	<h1>Casos CoVID-19 en Chile</h1>
+	<!--<button id="randomizeData">Randomize Data</button>
 	<button id="addDataset">Add Dataset</button>
 	<button id="removeDataset">Remove Dataset</button>
 	<button id="addData">Add Data</button>
-	<button id="removeData">Remove Data</button>
+	<button id="removeData">Remove Data</button> -->
 	<script>
 		var days = ['3/03/2020', '4/03/2020', '5/03/2020', '6/03/2020', '7/03/2020', '8/03/2020', '9/03/2020', '10/03/2020', '11/03/2020', '12/03/2020', '13/03/2020', '14/03/2020', '15/03/2020', '16/03/2020', '17/03/2020', '18/03/2020', '19/03/2020', '20/03/2020'];
 		//, '21/03/2020', '22/03/2020', '23/03/2020', '24/03/2020', '25/03/2020', '26/03/2020', '27/03/2020'];
@@ -34,24 +36,17 @@
 				labels: ['3/03/2020', '4/03/2020', '5/03/2020', '6/03/2020', '7/03/2020', '8/03/2020', '9/03/2020', '10/03/2020', '11/03/2020', '12/03/2020', '13/03/2020', '14/03/2020', '15/03/2020', '16/03/2020', '17/03/2020', '18/03/2020', '19/03/2020', '20/03/2020'],
 				//'21/03/2020', '22/03/2020', '23/03/2020', '24/03/2020', '25/03/2020', '26/03/2020', '27/03/2020'],
 				datasets: [{
-					label: 'My First dataset',
+					label: 'Casos confirmados en Chile',
 					backgroundColor: window.chartColors.red,
 					borderColor: window.chartColors.red,
 					data: [ '1', '3', '4', '5', '7', '10', '13', '17', '23', '33', '43', '61', '75', '156', '201', '238', '342', '434'],
 					fill: false,
 				}, {
-					label: 'My Second dataset',
+					label: 'A',
 					fill: false,
 					backgroundColor: window.chartColors.blue,
 					borderColor: window.chartColors.blue,
-					data: [
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor()
+					data: [ '0', '0' ]
 					],
 				}]
 			},
@@ -59,7 +54,7 @@
 				responsive: true,
 				title: {
 					display: true,
-					text: 'Chart.js Line Chart'
+					text: 'CoVID-19 en Chile'
 				},
 				tooltips: {
 					mode: 'index',
@@ -74,14 +69,14 @@
 						display: true,
 						scaleLabel: {
 							display: true,
-							labelString: 'Month'
+							labelString: 'Mes'
 						}
 					}],
 					yAxes: [{
 						display: true,
 						scaleLabel: {
 							display: true,
-							labelString: 'Value'
+							labelString: 'Casos confirmados'
 						}
 					}]
 				}
