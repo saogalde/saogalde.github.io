@@ -35,32 +35,39 @@
 	<button id="addData">Add Data</button>
 	<button id="removeData">Remove Data</button> -->
 	<script>
+		// HERE ALL THE DATA
 		var days = ['3/03/2020', '4/03/2020', '5/03/2020', '6/03/2020', '7/03/2020', '8/03/2020', '9/03/2020', '10/03/2020', '11/03/2020', '12/03/2020', '13/03/2020', '14/03/2020', '15/03/2020', '16/03/2020', '17/03/2020', '18/03/2020', '19/03/2020', '20/03/2020'];
+
+		var casosConfirmadosLinear = [ '1', '3', '4', '5', '7', '10', '13', '17', '23', '33', '43', '61', '75', '156', '201', '238', '342', '434'];
+		var muertesLinear = [ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0','0','0','0'];
+		var recuperadosLinear = [ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0','0','0','0'];
+
+
 		//, '21/03/2020', '22/03/2020', '23/03/2020', '24/03/2020', '25/03/2020', '26/03/2020', '27/03/2020'];
 		var configLinear = {
 			type: 'line',
 			data: {
-				labels: ['3/03/2020', '4/03/2020', '5/03/2020', '6/03/2020', '7/03/2020', '8/03/2020', '9/03/2020', '10/03/2020', '11/03/2020', '12/03/2020', '13/03/2020', '14/03/2020', '15/03/2020', '16/03/2020', '17/03/2020', '18/03/2020', '19/03/2020', '20/03/2020'],
+				labels: days
 				//'21/03/2020', '22/03/2020', '23/03/2020', '24/03/2020', '25/03/2020', '26/03/2020', '27/03/2020'],
 				datasets: [{
 					label: 'Casos confirmados',
 					backgroundColor: window.chartColors.blue,
 					borderColor: window.chartColors.blue,
-					data: [ '1', '3', '4', '5', '7', '10', '13', '17', '23', '33', '43', '61', '75', '156', '201', '238', '342', '434'],
+					data: casosConfirmadosLinear,
 					fill: false,
 				}, {
 					label: 'Muertes',
 					fill: false,
 					backgroundColor: window.chartColors.red,
 					borderColor: window.chartColors.red,
-					data: [ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0','0','0','0'],
+					data: muertesLinear,
 				},
 				{
 					label: 'Recuperados',
 					fill: false,
 					backgroundColor: window.chartColors.green,
 					borderColor: window.chartColors.green,
-					data: [ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0','0','0','0'],
+					data: ecuperadosLinear,
 				}]
 			},
 			options: {
@@ -89,7 +96,7 @@
 						display: true,
 						scaleLabel: {
 							display: true,
-							labelString: 'Casos confirmados'
+							labelString: 'Casos'
 						}
 					}]
 				}
@@ -160,7 +167,7 @@
 			window.myLinear = new Chart(ctxlinear, configLinear);
 
 			var ctxlog = document.getElementById('logaritmico').getContext('2d');
-			window.myLog = new Chart(ctxlog, config);
+			window.myLog = new Chart(ctxlog, configLog);
 		};
 
 		var colorNames = Object.keys(window.chartColors);
