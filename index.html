@@ -6,6 +6,7 @@
 	<title>Casos CoVID-19 en Chile</title>
 	<script src="lib/Chart.min.js"></script>
 	<script src="lib/utils.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<style>
 	canvas{
 		-moz-user-select: none;
@@ -20,7 +21,7 @@
 	<p>Dado que los reportes del Minsal sólo son números y no dan a entender cómo se está expandiendo el virus, he creado esta pequeña página que resume lo reportado por el Ministerio en un gráfico diario con <strong>Casos confirmados</strong>, número de <strong>Muertes</strong> y cantidad de <strong>Recuperados</strong>. Según el Ministerio, los casos de un día dado corresponden a los del día anterior hasta las 9pm (por ejemplo: si el día 13/03/20 hay 43 casos, corresponden a los casos detectados hasta el día 12/03/20 a las 9pm).</p>
 	
 	<p>Datos Actuales:<br>
-	Total Casos Detectados: 434<br>	
+	Total Casos Detectados: 537<br>	
 	Total Muertes: 0<br>
 	Total Recuperados: 0<br>
 	</p>
@@ -59,6 +60,32 @@
 	<button id="addData">Add Data</button>
 	<button id="removeData">Remove Data</button> -->
 	<script>
+		/*$(document).ready(function() {
+		    $.ajax({
+		        type: "GET",
+		        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTyfdKg1lyT4l4u53bPZLSsuB02U9H-Nbn4iZwTOb6xRU0_KB3IoS3sq4Ipp00-eUqCYWuRwtQ-2qRt/pub?gid=0&single=true&output=csv",
+		        crossOrigin: null,
+		        dataType: "text",
+		        success: function(data) {processData(data);}
+		     });
+		});
+
+		function processData(allText) {
+		    var record_num = 5;  // or however many elements there are in each row
+		    var allTextLines = allText.split(/\r\n|\n/);
+		    var entries = allTextLines[0].split(',');
+		    var lines = [];
+
+		    var headings = entries.splice(0,record_num);
+		    while (entries.length>0) {
+		        var tarr = [];
+		        for (var j=0; j<record_num; j++) {
+		            tarr.push(headings[j]+":"+entries.shift());
+		        }
+		        lines.push(tarr);
+		    }
+		    alert(lines);
+		}*/
 
 		function expCurveFit(y){
 		var sum_x2 = 0, sum_lny = 0, sum_x = 0, sum_xlny = 0, n = y.length;
@@ -75,7 +102,7 @@
 		// HERE ALL THE DATA
 		var days = ['3/03/2020', '4/03/2020', '5/03/2020', '6/03/2020', '7/03/2020', '8/03/2020', '9/03/2020', '10/03/2020', '11/03/2020', '12/03/2020', '13/03/2020', '14/03/2020', '15/03/2020', '16/03/2020', '17/03/2020', '18/03/2020', '19/03/2020', '20/03/2020','21/03/2020', '22/03/2020', '23/03/2020'];
 
-		var casosConfirmadosLinear = [ '1', '3', '4', '5', '7', '10', '13', '17', '23', '33', '43', '61', '75', '156', '201', '238', '342', '434'];
+		var casosConfirmadosLinear = [ '1', '3', '4', '5', '7', '10', '13', '17', '23', '33', '43', '61', '75', '156', '201', '238', '342', '434', '537'];
 		var muertesLinear = [ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0','0','0','0'];
 		var recuperadosLinear = [ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0','0','0','0'];
 
