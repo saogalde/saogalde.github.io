@@ -26,7 +26,7 @@
 	Total Recuperados: 8<br>
 	</p>
 	
-	<p>Proyección Casos Detectados dentro de 5 días: 4175.<br>
+	<p>Proyección Casos Detectados dentro de 5 días: 5197.<br>
 	La proyección se basa en los datos actuales ajustando una curva exponencial.</p>
 
 
@@ -108,7 +108,7 @@
 
 		var proyeccionExponencial = expCurveFit(casosConfirmadosLinear);
 		var casosConfirmadosProyeccion = [];
-		for(var i=0; i<(casosConfirmadosLinear.length+5); i++){
+		for(var i=0; i<(casosConfirmadosLinear.length+3); i++){
 			casosConfirmadosProyeccion.push(Math.round(proyeccionExponencial[0]*Math.exp(proyeccionExponencial[1]*i)));
 		}
 		console.log(casosConfirmadosProyeccion);
