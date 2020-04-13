@@ -1099,19 +1099,15 @@ section.lazy-placeholder:after {
 .cid-qTkzRZLJNu .dropdown-item:hover {
   color: #c1c1c1 !important;
 }
-.cid-rW04ANdj2F {
-  background-image: url("../../../assets/images/astronauts-sbasthian-2000x3000.jpg");
+.cid-rW0jKKFAmQ {
+  background-image: url("../../../assets/images/astronauts-sebasthian-copy-2-2000x1830.jpg");
 }
-.cid-rW04ANdj2F .mbr-section-subtitle {
-  letter-spacing: .2rem;
+.cid-rW0jKKFAmQ .mbr-text,
+.cid-rW0jKKFAmQ .mbr-section-btn {
+  text-align: left;
 }
-.cid-rW04ANdj2F .media-container-column {
-  background-color: #4f4943;
-}
-@media (max-width: 767px) {
-  .cid-rW04ANdj2F .media-container-column {
-    padding: 1rem !important;
-  }
+.cid-rW0jKKFAmQ H1 {
+  text-align: left;
 }
 .cid-rW05BeWQZQ {
   padding-top: 60px;
