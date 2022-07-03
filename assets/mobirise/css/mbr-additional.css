@@ -678,29 +678,6 @@ iframe.lazy-placeholder,
 section.lazy-placeholder:after {
   opacity: 0.3;
 }
-.cid-t34iYBnuKM {
-  background: #ffffff;
-}
-.cid-t34iYBnuKM .image-block {
-  margin: auto;
-  width: 100% !important;
-}
-.cid-t34iYBnuKM .mbr-figure {
-  margin: 0 auto;
-}
-.cid-t34iYBnuKM figcaption {
-  position: relative;
-}
-.cid-t34iYBnuKM figcaption div {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-@media (max-width: 768px) {
-  .cid-t34iYBnuKM .image-block {
-    width: 100% !important;
-  }
-}
 .cid-qTkzRZLJNu .navbar {
   padding: .5rem 0;
   background: #000000;
@@ -1089,6 +1066,11 @@ section.lazy-placeholder:after {
 .cid-qTkzRZLJNu .nav-link:hover,
 .cid-qTkzRZLJNu .dropdown-item:hover {
   color: #c1c1c1 !important;
+}
+.cid-taz3HjN4gl {
+  padding-top: 90px;
+  padding-bottom: 90px;
+  background-image: url("../../../assets/images/screenshot-2022-07-04-at-00.11.06-2000x826.jpg");
 }
 .cid-rW0jKKFAmQ {
   background-image: url("../../../assets/images/astronauts-sebasthian-copy-2-2000x1830.jpg");
